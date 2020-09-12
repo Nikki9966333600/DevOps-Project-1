@@ -20,7 +20,7 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh 'sudo docker build -t bank-service .'
+        sh 'sudo docker build -t devopsrocks .'
         sh 'echo build finished'
       }
     }
@@ -28,10 +28,10 @@ pipeline {
     stage('push image to ECR'){
       steps {
         sh 'echo entered ecr'
-       withDockerRegistry(credentialsId: 'ecr:us-east-1:aws-cred', url: 'http://102789521217.dkr.ecr.us-east-1.amazonaws.com/bank-service') {
+       withDockerRegistry(credentialsId: 'ecr:us-east-1:aws-cred', url: 'http://102789521217.dkr.ecr.us-east-1.amazonaws.com/devopsrocks') {
           sh 'sudo usermod -aG docker jenkins'
-          sh 'docker tag bank-service:latest 102789521217.dkr.ecr.us-east-1.amazonaws.com/bank-service:latest'
-          sh 'docker push 102789521217.dkr.ecr.us-east-1.amazonaws.com/bank-service:latest'
+          sh 'docker tag devopsrocks:latest 102789521217.dkr.ecr.us-east-1.amazonaws.com/devopsrocks:latest'
+          sh 'docker push 102789521217.dkr.ecr.us-east-1.amazonaws.com/devopsrocks:latest'
         } 
       }
     }
