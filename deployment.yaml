@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devopsrocks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devopsrocks
+  template:
+    metadata:
+      labels:
+        app: devopsrocks
+    spec:
+      containers:
+      - name: devopsrocks
+        image: 102789521217.dkr.ecr.us-east-1.amazonaws.com/devopsrocks
+        ports:
+        - containerPort: 80
